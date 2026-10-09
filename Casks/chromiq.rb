@@ -26,7 +26,10 @@ cask "chromiq" do
   # macOS would refuse to open it on first launch ("Apple could not verify
   # ..."), so the cask removes the download quarantine from the installed app.
   postflight_steps do
-    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{appdir}/ChromIQ.app"]
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.quarantine", "{{appdir}}/ChromIQ.app"],
+        writable_paths: ["ChromIQ.app"],
+        writable_base:  :appdir
   end
 
   # Never ~/ChromIQ: those are the user's own projects.

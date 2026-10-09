@@ -11,9 +11,16 @@ cask "chromiq@beta" do
   desc "GUI for ICC printer profiling with ArgyllCMS"
   homepage "https://github.com/itsab1989/ChromIQ"
 
+  # The newest release, beta or stable: the GitHub API lists pre-releases too.
   livecheck do
-    url :url
-    strategy :github_releases
+    url "https://api.github.com/repos/itsab1989/ChromIQ/releases"
+    strategy :json do |json|
+      json.filter_map do |release|
+        next if release["draft"]
+
+        release["tag_name"]&.delete_prefix("v")
+      end
+    end
   end
 
   conflicts_with cask: "chromiq"
@@ -26,7 +33,10 @@ cask "chromiq@beta" do
   # macOS would refuse to open it on first launch ("Apple could not verify
   # ..."), so the cask removes the download quarantine from the installed app.
   postflight_steps do
-    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{appdir}/ChromIQ.app"]
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.quarantine", "{{appdir}}/ChromIQ.app"],
+        writable_paths: ["ChromIQ.app"],
+        writable_base:  :appdir
   end
 
   # Never ~/ChromIQ: those are the user's own projects.
