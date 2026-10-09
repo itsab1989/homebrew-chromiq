@@ -1,0 +1,19 @@
+name: Check casks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up the tap
+        run: |
+          mkdir -p "$(brew --repository)/Library/Taps/itsab1989"
+          ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/itsab1989/homebrew-chromiq"
+      - name: brew style
+        run: brew style --cask itsab1989/chromiq/chromiq itsab1989/chromiq/chromiq@beta
+      - name: brew audit
+        run: brew audit --cask --strict --online itsab1989/chromiq/chromiq itsab1989/chromiq/chromiq@beta
