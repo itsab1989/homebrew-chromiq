@@ -18,17 +18,15 @@ cask "chromiq@beta" do
 
   conflicts_with cask: "chromiq"
   depends_on formula: "argyll-cms"
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "ChromIQ.app"
 
   # ChromIQ is ad-hoc signed, not notarised by Apple. Without this step
   # macOS would refuse to open it on first launch ("Apple could not verify
   # ..."), so the cask removes the download quarantine from the installed app.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/ChromIQ.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{appdir}/ChromIQ.app"]
   end
 
   # Never ~/ChromIQ: those are the user's own projects.
