@@ -1,11 +1,11 @@
 cask "chromiq@beta" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "4.3.3-beta.16"
-  sha256 arm:   "d6dbd5109885381d255b2dceeaa7f01173b9bc6fd07e1a1067d0dfa175908844",
-         intel: "1d21f283f1db9fb908dae193e604e6aea81933abd030a5903d3eef0d180767e5"
+  version "4.3.3-beta.17"
+  sha256 arm:   "6eb48125c5433c8113437c08294b7a22c00d3a116b8a4abe40755b0b76a85565",
+         intel: "e6223f25d6caef7e2afed68345fa89583e5a6cee2278517e105656c11e044dcb"
 
-  url "https://github.com/itsab1989/ChromIQ/releases/download/v#{version}/ChromIQ-macOS-#{arch}_v#{version}.dmg"
+  url "https://github.com/itsab1989/ChromIQ/releases/download/v#{version}/ChromIQ-macOS-#{arch}_v#{version}_homebrew.dmg"
   name "ChromIQ (beta)"
   desc "GUI for ICC printer profiling with ArgyllCMS"
   homepage "https://github.com/itsab1989/ChromIQ"
