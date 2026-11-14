@@ -1,9 +1,9 @@
 cask "chromiq" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "4.3.36"
-  sha256 arm:   "319eee7dbde22136e10b6c6d87418b9be36203cbf3f044199afe86f88a80c772",
-         intel: "213a9cdbb39caf08c4685859cefb1d240f88625527a81b8f5066957ee0fdf79b"
+  version "4.3.37"
+  sha256 arm:   "e04685d663cd3d63ea20d45285b7f7f6e990bf318a498345dfea0fe00d263c02",
+         intel: "b0ec6c9ecabccd84bb544c74e7358d68a074d48f581cc4fe00591fbf4b2016b4"
 
   url "https://github.com/itsab1989/ChromIQ/releases/download/v#{version}/ChromIQ-macOS-#{arch}_v#{version}_homebrew.dmg"
   name "ChromIQ"
